@@ -1,0 +1,47 @@
+﻿@model  ML.Libro
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Agregar Libro</h2>
+<br />
+
+<div class="row">
+    <form>
+        @using (Html.BeginForm("Form", "Libro", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="hidden">
+                @Html.LabelFor(model => model.IdLibro)
+                @Html.TextBoxFor(model => model.IdLibro)
+            </div>
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.TextBoxFor(model => model.Nombre)
+            </div>
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FechaPublicacion)
+                @Html.TextBoxFor(model => model.FechaPublicacion)
+            </div>
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NumeroPaginas)
+                @Html.TextBoxFor(model => model.NumeroPaginas)
+            </div>
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Autor.IdAutor)
+                @Html.TextBoxFor(model => model.Autor.IdAutor)
+            </div>
+            <br />
+
+            <button type="submit" class="btn btn-default">Submit</button>
+        }
+    </form>
+</div>

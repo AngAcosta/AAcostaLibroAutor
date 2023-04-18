@@ -1,0 +1,56 @@
+﻿@model ML.Libro
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Libros</h2>
+<br/>
+
+<div>
+    @Html.ActionLink("Agregar Libro", "Form","Libro",htmlAttributes:new { @class = "btn btn-success"} )
+</div>
+<br/>
+
+<div class="row">
+    @if (Model.Libros != null)
+    {
+        //tabla
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <td class="text-center">Editar</td>
+
+                    <td class="hidden">IdLibro</td>
+                    <td class="text-center">Nombre</td>
+                    <td class="text-center">FechaPublicacion</td>
+                    <td class="text-center">NumeroPaginas</td>
+                    <td class="hidden">IdAutor</td>
+                    <td class="text-center">Nombre</td>
+
+                    <td class="text-center">Eliminar</td>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (ML.Libro libro in Model.Libros)
+                {
+                    <tr>
+                        <td class="text-center"><a class="btn btn-warning" href="@Url.Action("Form", "Libro", new { IdLibro = libro.IdLibro })"></a></td>
+
+                        <td class="hidden">@libro.IdLibro</td>
+                        <td>@libro.Nombre</td>
+                        <td>@libro.FechaPublicacion</td>
+                        <td>@libro.NumeroPaginas</td>
+
+                        <td class="hidden">@libro.Autor.IdAutor</td>
+                        <td>@libro.Autor.NombreAutor, @libro.Autor.ApellidoPaterno, @libro.Autor.ApellidoMaterno</td>
+
+                        <td class="text-center"><a class="btn btn-danger" href="@Url.Action("Delete", "Libro", new { IdLibro = libro.IdLibro })"></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
